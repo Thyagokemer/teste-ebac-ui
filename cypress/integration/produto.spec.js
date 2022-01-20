@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 
-describe(`Funcionalidade Página de produtos `, () => {
+describe('Funcionalidade Página de produtos', () => {
 
     beforeEach(() => {
-        cy.visit('produtos')
+        cy.visit ('produtos')
     });
 
     it('Deve selecionar um produto da lista', () => {
@@ -14,12 +14,11 @@ describe(`Funcionalidade Página de produtos `, () => {
             .click()
     });
 
-    it.only('Deve adicionar um produto ao carrinho', () => {
+    it('Deve adicionar um produto ao carrinho', () => {
         var quantidade = 10
         
-        cy.get('[class="product-block grid"]')
-            .contains('Ariel Roll Sleeve Sweatshirt')
-            .click()
+        cy.get('[class="product-block grid"]').contains('Ariel Roll Sleeve Sweatshirt')
+        .click()
         cy.get('.button-variable-item-XS')
         .click()
 
@@ -40,4 +39,13 @@ describe(`Funcionalidade Página de produtos `, () => {
         .should('contain', quantidade +' × “Ariel Roll Sleeve Sweatshirt” foram adicionados no seu carrinho.')
     });
 
+    it.only('Deve adicionar um produto ao carrinho - Usando comando customizado', () => {
+        cy.addProdutos ('Aero Daily Fitness Tee','M', 'Black', 3)
+
+    });   
+
+    it.only('Deve adicionar um produto ao carrinho - Usando comando customizado', () => {
+        cy.addProdutos ('Ariel Roll Sleeve Sweatshirt', 'L', 'Green', 5)
+
+    });   
 });
